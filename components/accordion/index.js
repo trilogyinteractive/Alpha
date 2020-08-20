@@ -1,31 +1,23 @@
 class CWDSAccordion extends window.HTMLElement {
   connectedCallback () {
+    this.state = 'closed';
+    this.container = this.querySelector('.accordion');
     this.expandTarget = this.querySelector('.card-container');
-    this.expandButton = this.querySelector('.card-header');
-    this.expandButton.addEventListener('click', this.listen.bind(this));
     this.activateButton = this.querySelector('.card-header');
+    this.activateButton.addEventListener('click', this.listen.bind(this));
   }
 
   listen () {
-    if (!this.cardBodyHeight) {
-      this.cardBodyHeight = this.querySelector('.card-body').clientHeight;
-    }
-    if (this.expandTarget.clientHeight > 0) {
-      this.expandTarget.style.height = '0px';
+    if (this.state === 'open') {
       this.expandTarget.setAttribute('aria-hidden', 'true');
-      this.querySelector('.card-header').classList.remove('accordion-alpha-open');
-      const expando = this.expandTarget;
+      this.container.classList.remove('accordion-open');
       this.activateButton.setAttribute('aria-expanded', 'false');
-      setTimeout(function () {
-        expando.style.display = 'none';
-      }, 300);
+      this.state = 'closed';
     } else {
-      this.expandTarget.style.display = 'block';
-      this.expandTarget.style.height = this.cardBodyHeight + 'px';
       this.expandTarget.setAttribute('aria-hidden', 'false');
-      this.querySelector('.card-header').classList.add('accordion-alpha-open');
-      this.querySelector('.card-container').classList.remove('collapsed');
+      this.container.classList.add('accordion-open');
       this.activateButton.setAttribute('aria-expanded', 'true');
+      this.state = 'open';
     }
   }
 }

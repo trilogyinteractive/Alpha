@@ -1,28 +1,12 @@
-import { fixture, expect } from '@open-wc/testing';
-
-import '../index.js';
-
-function elementExists (selector) {
-  return new Promise(resolve => {
-    function checkForElement (selector, callback) {
-      if (document.querySelector(selector)) {
-        callback();
-      } else {
-        setTimeout(() => {
-          checkForElement(selector, callback);
-        }, 1000);
-      }
-    }
-
-    checkForElement(selector, function () {
-      resolve(true);
-    });
-  });
-}
-
-describe('renders', function () {
-  it('an element', async () => {
-    const el = await fixture(`<cwds-accordion>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href="./index.css" rel="stylesheet" />
+  <script src="./index.js"></script>
+</head>
+<body>
+  <cwds-accordion>
     <div class="accordion">
       <button class="accordion-header card-header accordion-alpha" type="button" aria-expanded="false">
         <div class="accordion-header-icon"></div>
@@ -35,8 +19,6 @@ describe('renders', function () {
         </div>
       </div>
     </div>
-  </cwds-accordion>`);
-    await elementExists('.card-body');
-    expect(el.querySelectorAll('.card-body').length).to.be.above(0);
-  });
-});
+  </cwds-accordion>
+</body>
+</html>

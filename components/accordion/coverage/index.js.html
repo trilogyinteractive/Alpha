@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.81% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/21</span>
+                <span class='fraction'>6/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">23.81% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/21</span>
+                <span class='fraction'>6/15</span>
             </div>
         
             
@@ -80,16 +80,9 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -99,19 +92,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -122,32 +106,24 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">class CWDSAccordion extends window.HTMLElement {
   connectedCallback () {
+    this.state = 'closed';
+    this.container = this.querySelector('.accordion');
     this.expandTarget = this.querySelector('.card-container');
-    this.expandButton = this.querySelector('.card-header');
-    this.expandButton.addEventListener('click', this.listen.bind(this));
     this.activateButton = this.querySelector('.card-header');
+    this.activateButton.addEventListener('click', this.listen.bind(this));
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  li</span>sten () {
-<span class="cstat-no" title="statement not covered" >    if (!this.cardBodyHeight) {</span>
-<span class="cstat-no" title="statement not covered" >      this.cardBodyHeight = this.querySelector('.card-body').clientHeight;</span>
-    }
-<span class="cstat-no" title="statement not covered" >    if (this.expandTarget.clientHeight &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >      this.expandTarget.style.height = '0px';</span>
+<span class="cstat-no" title="statement not covered" >    if (this.state === 'open') {</span>
 <span class="cstat-no" title="statement not covered" >      this.expandTarget.setAttribute('aria-hidden', 'true');</span>
-<span class="cstat-no" title="statement not covered" >      this.querySelector('.card-header').classList.remove('accordion-alpha-open');</span>
-      const expando = <span class="cstat-no" title="statement not covered" >this.expandTarget;</span>
+<span class="cstat-no" title="statement not covered" >      this.container.classList.remove('accordion-open');</span>
 <span class="cstat-no" title="statement not covered" >      this.activateButton.setAttribute('aria-expanded', 'false');</span>
-<span class="cstat-no" title="statement not covered" >      setTimeout(<span class="fstat-no" title="function not covered" >fu</span>nction () {</span>
-<span class="cstat-no" title="statement not covered" >        expando.style.display = 'none';</span>
-      }, 300);
+<span class="cstat-no" title="statement not covered" >      this.state = 'closed';</span>
     } else {
-<span class="cstat-no" title="statement not covered" >      this.expandTarget.style.display = 'block';</span>
-<span class="cstat-no" title="statement not covered" >      this.expandTarget.style.height = this.cardBodyHeight + 'px';</span>
 <span class="cstat-no" title="statement not covered" >      this.expandTarget.setAttribute('aria-hidden', 'false');</span>
-<span class="cstat-no" title="statement not covered" >      this.querySelector('.card-header').classList.add('accordion-alpha-open');</span>
-<span class="cstat-no" title="statement not covered" >      this.querySelector('.card-container').classList.remove('collapsed');</span>
+<span class="cstat-no" title="statement not covered" >      this.container.classList.add('accordion-open');</span>
 <span class="cstat-no" title="statement not covered" >      this.activateButton.setAttribute('aria-expanded', 'true');</span>
+<span class="cstat-no" title="statement not covered" >      this.state = 'open';</span>
     }
   }
 }
@@ -159,7 +135,7 @@ window.customElements.define('cwds-accordion', CWDSAccordion);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Mar 03 2020 11:39:57 GMT-0800 (Pacific Standard Time)
+                at Thu Aug 20 2020 08:23:12 GMT-0500 (Central Daylight Time)
             </div>
         </div>
         <script src="prettify.js"></script>
